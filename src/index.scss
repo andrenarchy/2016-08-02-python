@@ -21,6 +21,10 @@ code {
   font-size: 11px;
 }
 
+.tiny {
+  font-size: 70%;
+}
+
 blockquote {
   font-size: 24px;
 }
@@ -28,6 +32,12 @@ blockquote {
 .slide {
   color: white;
   padding: 20px;
+}
+
+.slide-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slide-full-img {
