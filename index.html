@@ -1,0 +1,106 @@
+<!DOCTYPE html><html ng-app="PythonWorkshop" lang="en"><head><title>Python workshop</title><meta charset="UTF-8"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><link rel="stylesheet" href="//opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,600,800"><script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script><script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-animate.min.js"></script><script src="vendor/angular-slidedeck/angular-slidedeck.min.js"></script><link rel="stylesheet" href="vendor/angular-slidedeck/angular-slidedeck.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/tomorrow-night.min.css"><!-- initialize angular (your own js and css)--><script src="index.js"></script><link rel="stylesheet" href="index.css"></head><body ng-cloak><slides><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python workshop</h1><h2>Professional scientific software development</h2></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-offset-3 col-md-6"><div class="box"><div class="text-center"><a href="https://andre.gaul.io"><img class="img-circle" src="img/andre.jpg" style="max-width: 90px"></a><p>André Gaul</p><p><a href="https://twitter.com/andrenarchy">@andrenarchy</a></p><p><a href="https://paperhive.org"><img src="img/paperhive.svg" style="height: 1em"></a></p><p class="tiny text-muted">Slides:<br> <a href="https://andrenarchy.github.io/2016-08-02-python/">andrenarchy.github.io/2016-08-02-python/</a></p></div></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Why Python?</h1></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-8 col-md-offset-2"><div class="box"><ul><li>Universal programming language</li><li>Readable source code</li><li>Highly extendable via modules</li><li>Batteries included for common tasks</li><li>Large community</li><li>Free software</li><li>Can integrate C/C++ or Fortran code (via Cython)</li></ul></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>History of Python</h1></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-8 col-md-offset-2"><div class="box"><ul><li>1989: developed by Guido van Rossum as a hobby project on Christmas</li><li>1994: Python 1.0</li><li>2000: Python 2.0</li><li>2008: Python 3.0, backwards-incompatible release</li><li>2010: Python 2.7, last release of Python 2</li><li>2015: Python 3.5, matrix multiplication operator <code>@</code></li><li>...</li></ul><p>In this workshop: <strong>Python 3.5</strong></p></div></div></div></slide><slide class="slide-title container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Set up Python</h1><h2>Get your dev environment up and running</h2></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python setup</h1><h2>Install python and standard modules</h2></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-6"><div class="box"><h3>Linux</h3><pre class="code-small"><code class="hljs"><span class="hljs-comment"># python3</span>
+sudo apt-get install python3 python3-pip \
+  python3-numpy python3-scipy python3-matplotlib \
+  python3-dev build-essential
+
+<span class="hljs-comment"># let pip install packages to your home</span>
+<span class="hljs-comment"># (add ~/.pyvirt3/bin to your PATH)</span>
+virtualenv -p python3 --system-site-packages ~/.pyvirt3
+
+<span class="hljs-comment"># install important packages</span>
+pip3 install ipython jupyter pep8</code></pre></div></div><div class="col-md-6"><div class="box"><h3>Mac OS X, Windows</h3><p>Install <a href="https://www.continuum.io/downloads">Anaconda</a></p></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python setup</h1><h2>Verify installation</h2></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-6 col-md-offset-3"><div class="box"><pre><code class="hljs">python3 --version
+<span class="hljs-comment"># Python 3.5.2</span>
+
+ipython3 --version
+<span class="hljs-comment"># 5.0.0</span>
+</code></pre></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python setup</h1><h2>Text editor</h2></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-12"><div class="box"><ul><li>Use what ever text editor you like 😃</li><li>I use <a href="https://atom.io/">atom</a> and recommend the following packages:<ul><li>autocomplete-python</li><li>language-python</li><li>linter-pep8</li></ul></li></ul></div></div></div></slide><slide class="slide-title container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python basics</h1><h2>Introduction to the Python language</h2></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python basics</h1><h2>Hello world</h2></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-12"><div class="box"><pre><code class="hljs">print(<span class="hljs-string">"Hello world!"</span>)
+
+a = <span class="hljs-number">1337</span>
+print(<span class="hljs-string">"a = {0}"</span>.format(a))
+
+a = <span class="hljs-string">"h3ll0"</span>
+print(a)
+</code></pre></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python basics</h1><h2>Lists</h2></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-12"><div class="box"><pre><code class="hljs"><span class="hljs-comment"># a list</span>
+b = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-string">"this is a string"</span>]
+
+<span class="hljs-comment"># indentation defines code blocks</span>
+<span class="hljs-keyword">for</span> el <span class="hljs-keyword">in</span> b:
+    print(el)
+
+<span class="hljs-comment"># list comprehension</span>
+squares = [x**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">4</span>)] <span class="hljs-comment"># [0, 1, 4, 9]</span>
+</code></pre></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python basics</h1><h2>Dictionaries</h2></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-12"><div class="box"><pre><code class="hljs"><span class="hljs-comment"># dictionary with string keys</span>
+ages = {<span class="hljs-string">'alice'</span>: <span class="hljs-number">28</span>, <span class="hljs-string">'bob'</span>: <span class="hljs-number">32</span>}
+
+print(ages[<span class="hljs-string">'bob'</span>]) <span class="hljs-comment"># 32</span>
+
+<span class="hljs-comment"># dictionary with non-string keys (here: tuples)</span>
+d = { (<span class="hljs-number">1</span>,<span class="hljs-number">2</span>): <span class="hljs-keyword">True</span>, (<span class="hljs-number">4</span>,<span class="hljs-number">3</span>): <span class="hljs-keyword">False</span> }
+</code></pre></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python basics</h1><h2>Functions</h2></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-12"><div class="box"><pre><code class="hljs"><span class="hljs-comment"># can be defined everywhere!</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fak</span><span class="hljs-params">(n)</span>:</span>
+    result = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,n+<span class="hljs-number">1</span>):
+        result *= i
+    <span class="hljs-keyword">return</span> result
+
+print(fak(<span class="hljs-number">3</span>)) <span class="hljs-comment"># 6</span>
+</code></pre></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python basics</h1><h2>Functions – arguments</h2></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-6"><div class="box"><pre><code class="hljs"><span class="hljs-comment"># arguments with default values</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gmres</span><span class="hljs-params">(A, b, tol=<span class="hljs-number">1e-8</span>, maxit=None)</span>:</span>
+    <span class="hljs-keyword">if</span> maxit <span class="hljs-keyword">is</span> <span class="hljs-keyword">None</span>:
+        maxit = b.shape[<span class="hljs-number">0</span>]
+
+    <span class="hljs-comment"># work...</span></code></pre></div></div><div class="col-md-6"><div class="box"><pre><code class="hljs"><span class="hljs-comment"># optional arguments omitted</span>
+gmres(A, b)
+
+<span class="hljs-comment"># optional argument by position</span>
+gmres(A, b, <span class="hljs-number">1e-12</span>)
+
+<span class="hljs-comment"># optional argument by name</span>
+gmres(A, b, maxit=<span class="hljs-number">20</span>)
+</code></pre></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python basics</h1><h2>Functions – return values</h2></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-6"><div class="box"><pre><code class="hljs"><span class="hljs-comment"># multiple return values</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gmres</span><span class="hljs-params">(A, b)</span>:</span>
+    <span class="hljs-comment"># work...</span>
+
+    <span class="hljs-keyword">return</span> x, residual</code></pre></div></div><div class="col-md-6"><div class="box"><pre><code class="hljs"><span class="hljs-comment"># assign return values to variables</span>
+x, residual = gmres(A, b)
+
+<span class="hljs-comment"># ignore the residual</span>
+x, _ = gmres(A, b)
+</code></pre></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python basics</h1><h2>Lambda functions</h2></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-12"><div class="box"><pre><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">filter</span><span class="hljs-params">(numbers, test)</span>:</span>
+    <span class="hljs-keyword">return</span> [x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> numbers <span class="hljs-keyword">if</span> test(x)]
+
+print(filter([<span class="hljs-number">1</span>, <span class="hljs-number">23</span>, <span class="hljs-number">42</span>], <span class="hljs-keyword">lambda</span> x: x &lt; <span class="hljs-number">40</span>)) <span class="hljs-comment"># [1, 23]</span>
+</code></pre></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python basics</h1><h2>Classes</h2></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-6"><div class="box"><pre><code class="hljs"><span class="hljs-comment"># class definition</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LinearSystem</span>:</span>
+    <span class="hljs-comment"># constructor</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, A, b)</span>:</span>
+        self.A = A
+        self.b = b
+
+    <span class="hljs-comment"># class method</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getResidual</span><span class="hljs-params">(self, x)</span>:</span>
+        <span class="hljs-keyword">return</span> self.b - self.A @ x</code></pre></div></div><div class="col-md-6"><div class="box"><pre><code class="hljs"><span class="hljs-comment"># instanciate class</span>
+ls = LinearSystem(A, b)
+
+<span class="hljs-comment"># run method on instance</span>
+ls.getResidual(x)
+</code></pre></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python basics</h1><h2>Modules</h2></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-6"><div class="box"><pre><code class="hljs"><span class="hljs-comment"># utils.py</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LinearSystem</span>:</span>
+    <span class="hljs-comment"># constructor</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, A, b)</span>:</span>
+        self.A = A
+        self.b = b
+
+    <span class="hljs-comment"># class method</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getResidual</span><span class="hljs-params">(self, x)</span>:</span>
+        <span class="hljs-keyword">return</span> self.b - self.A @ x</code></pre></div></div><div class="col-md-6"><div class="box"><pre><code class="hljs"><span class="hljs-comment"># solve.py</span>
+<span class="hljs-keyword">from</span> numpy.random <span class="hljs-keyword">import</span> rand
+<span class="hljs-keyword">from</span> numpy.linalg <span class="hljs-keyword">import</span> solve
+
+<span class="hljs-keyword">from</span> utils <span class="hljs-keyword">import</span> LinearSystem
+
+ls = LinearSystem(rand(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>),
+                  rand(<span class="hljs-number">10</span>, <span class="hljs-number">1</span>))
+x = solve(ls.A, ls.b)
+print(ls.getResidual(x))
+</code></pre></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python basics</h1><h2>Modules</h2></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-12"><div class="box"><div class="text-center"><a class="text-center" href="http://xkcd.com/353/"><img src="img/xkcd-python-1.png" style="height: 250px"></a></div></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Python basics</h1><h2>Modules</h2></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-12"><div class="box"><div class="text-center"><a href="http://xkcd.com/353/"><img src="img/xkcd-python-2.png" style="height: 250px"></a></div></div></div></div></slide><slide class="slide-title container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Scientific Python</h1><h2>NumPy, SciPy, matplotlib, jupyter and FEniCS</h2></div></div></div></slide><slide class="slide-title container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Continuous integration</h1><h2>Unit tests, linting and code coverage</h2></div></div></div></slide><slide class="slide-title container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Documentation</h1><h2>Read the docs</h2></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Further resources</h1></div></div></div><div class="row row-stretch sm-margin-top"><div class="col-md-12"><div class="box"><ul><li><a href="http://learnpythonthehardway.org/">Learn Python the hard way</a></li><li><a href="http://www.scipy-lectures.org/">SciPy lectures</a></li><li><a href="http://getpython3.com/diveintopython3/">Dive into Python 3</a></li></ul></div></div></div></slide><slide class="container-fluid"><div class="row"><div class="col-md-12"><div class="box text-center"><h1>Questions?</h1></div></div></div><div class="row row-stretch sm-margin-top"></div></slide></slides></body></html>
