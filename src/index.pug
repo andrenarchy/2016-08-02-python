@@ -64,15 +64,13 @@ html(ng-app="PythonWorkshop",lang="en")
                 img(src="img/paperhive.svg",style="height: 1em")
             p.tiny.text-muted Slides:<br> #[a(href="https://andrenarchy.github.io/2016-08-02-python/") andrenarchy.github.io/2016-08-02-python/]
 
-      +slide-title('Python basics', 'Introduction to the Python language')
-
       +slide('Why Python?')
         +slide-column(['col-md-8', 'col-md-offset-2'])
           ul
             li Universal programming language
             li Readable source code
-            li Batteries included
             li Highly extendable via modules
+            li Batteries included for common tasks
             li Large community
             li Free software
             li Can integrate C/C++ or Fortran code (via Cython)
@@ -89,7 +87,53 @@ html(ng-app="PythonWorkshop",lang="en")
             li ...
           p In this workshop: #[strong Python 3.5]
 
-      +slide('Show me code!')
+      +slide-title('Set up Python', 'Get your dev environment up and running')
+
+      +slide('Python setup', 'Install python and standard modules')
+        +slide-column(['col-md-6'])
+          h3 Linux
+          pre.code-small
+            code.hljs
+              :highlight(lang="bash")
+                # python3
+                sudo apt-get install python3 python3-pip \
+                  python3-numpy python3-scipy python3-matplotlib \
+                  python3-dev build-essential
+
+                # let pip install packages to your home
+                # (add ~/.pyvirt3/bin to your PATH)
+                virtualenv -p python3 --system-site-packages ~/.pyvirt3
+
+                # install important packages
+                pip3 install ipython jupyter pep8
+        +slide-column(['col-md-6'])
+          h3 Mac OS X, Windows
+          p Install #[a(href="https://www.continuum.io/downloads") Anaconda]
+
+      +slide('Python setup', 'Verify installation')
+        +slide-column(['col-md-6', 'col-md-offset-3'])
+          pre
+            code.hljs
+              :highlight(lang="bash")
+                python3 --version
+                # Python 3.5.2
+
+                ipython3 --version
+                # 5.0.0
+
+      +slide('Python setup', 'Text editor')
+        +slide-column
+          ul
+            li Use what ever text editor you like 😃
+            li I use #[a(href="https://atom.io/") atom] and recommend the following packages:
+              ul
+                li autocomplete-python
+                li language-python
+                li linter-pep8
+
+      +slide-title('Python basics', 'Introduction to the Python language')
+
+      +slide('Python basics', 'Hello world')
         +slide-column
           pre
             code.hljs
@@ -99,25 +143,183 @@ html(ng-app="PythonWorkshop",lang="en")
                 a = 1337
                 print("a = {0}".format(a))
 
-      +slide-title('Set up Python', 'Get your dev environment up and running')
+                a = "h3ll0"
+                print(a)
 
-      +slide('Python setup')
-        +slide-column(['col-md-6'])
-          h3 Linux
-          pre.code-small
+      +slide('Python basics', 'Lists')
+        +slide-column
+          pre
             code.hljs
               :highlight(lang="python")
-                sudo apt-get install python3 python3-pip \
-                  python3-numpy python3-scipy python3-matplotlib \
-                  python3-dev build-essential
-                virtualenv -p python3 --system-site-packages ~/.pyvirt3
-                pip3 install ipython jupyter
+                # a list
+                b = [1, 2, 3, "this is a string"]
+
+                # indentation defines code blocks
+                for el in b:
+                    print(el)
+
+                # list comprehension
+                squares = [x**2 for x in range(4)] # [0, 1, 4, 9]
+
+      +slide('Python basics', 'Dictionaries')
+        +slide-column
+          pre
+            code.hljs
+              :highlight(lang="python")
+                # dictionary with string keys
+                ages = {'alice': 28, 'bob': 32}
+
+                print(ages['bob']) # 32
+
+                # dictionary with non-string keys (here: tuples)
+                d = { (1,2): True, (4,3): False }
+
+      +slide('Python basics', 'Functions')
+        +slide-column
+          pre
+            code.hljs
+              :highlight(lang="python")
+                # can be defined everywhere!
+                def fak(n):
+                    result = 1
+                    for i in range(1,n+1):
+                        result *= i
+                    return result
+
+                print(fak(3)) # 6
+
+      +slide('Python basics', 'Functions – arguments')
         +slide-column(['col-md-6'])
-          h3 Mac OS X, Windows
-          p Install #[a(href="https://www.continuum.io/downloads") Anaconda]
+          pre
+            code.hljs
+              :highlight(lang="python")
+                # arguments with default values
+                def gmres(A, b, tol=1e-8, maxit=None):
+                    if maxit is None:
+                        maxit = b.shape[0]
+
+                    # work...
+        +slide-column(['col-md-6'])
+          pre
+            code.hljs
+              :highlight(lang="python")
+                # optional arguments omitted
+                gmres(A, b)
+
+                # optional argument by position
+                gmres(A, b, 1e-12)
+
+                # optional argument by name
+                gmres(A, b, maxit=20)
+
+      +slide('Python basics', 'Functions – return values')
+        +slide-column(['col-md-6'])
+          pre
+            code.hljs
+              :highlight(lang="python")
+                # multiple return values
+                def gmres(A, b):
+                    # work...
+
+                    return x, residual
+        +slide-column(['col-md-6'])
+          pre
+            code.hljs
+              :highlight(lang="python")
+                # assign return values to variables
+                x, residual = gmres(A, b)
+
+                # ignore the residual
+                x, _ = gmres(A, b)
+
+      +slide('Python basics', 'Lambda functions')
+        +slide-column
+          pre
+            code.hljs
+              :highlight(lang="python")
+                def filter(numbers, test):
+                    return [x for x in numbers if test(x)]
+
+                print(filter([1, 23, 42], lambda x: x < 40)) # [1, 23]
+
+      +slide('Python basics', 'Classes')
+        +slide-column(['col-md-6'])
+          pre
+            code.hljs
+              :highlight(lang="python")
+                # class definition
+                class LinearSystem:
+                    # constructor
+                    def __init__(self, A, b):
+                        self.A = A
+                        self.b = b
+
+                    # class method
+                    def getResidual(self, x):
+                        return self.b - self.A @ x
+        +slide-column(['col-md-6'])
+          pre
+            code.hljs
+              :highlight(lang="python")
+                # instanciate class
+                ls = LinearSystem(A, b)
+
+                # run method on instance
+                ls.getResidual(x)
+
+      +slide('Python basics', 'Modules')
+        +slide-column(['col-md-6'])
+          pre
+            code.hljs
+              :highlight(lang="python")
+                # utils.py
+                class LinearSystem:
+                    # constructor
+                    def __init__(self, A, b):
+                        self.A = A
+                        self.b = b
+
+                    # class method
+                    def getResidual(self, x):
+                        return self.b - self.A @ x
+        +slide-column(['col-md-6'])
+          pre
+            code.hljs
+              :highlight(lang="python")
+                # solve.py
+                from numpy.random import rand
+                from numpy.linalg import solve
+
+                from utils import LinearSystem
+
+                ls = LinearSystem(rand(10, 10),
+                                  rand(10, 1))
+                x = solve(ls.A, ls.b)
+                print(ls.getResidual(x))
+
+      +slide('Python basics', 'Modules')
+        +slide-column
+          .text-center
+            a(href="http://xkcd.com/353/").text-center
+              img(src="img/xkcd-python-1.png",style="height: 250px")
+
+      +slide('Python basics', 'Modules')
+        +slide-column
+          .text-center
+            a(href="http://xkcd.com/353/")
+              img(src="img/xkcd-python-2.png",style="height: 250px")
 
       +slide-title('Scientific Python', 'NumPy, SciPy, matplotlib, jupyter and FEniCS')
 
       +slide-title('Continuous integration', 'Unit tests, linting and code coverage')
+
+      +slide-title('Documentation', 'Read the docs')
+
+      +slide('Further resources')
+        +slide-column
+          ul
+            li #[a(href="http://learnpythonthehardway.org/") Learn Python the hard way]
+            li #[a(href="http://www.scipy-lectures.org/") SciPy lectures]
+            li #[a(href="http://getpython3.com/diveintopython3/") Dive into Python 3]
 
       +slide('Questions?')
