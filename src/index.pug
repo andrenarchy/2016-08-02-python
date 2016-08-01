@@ -66,7 +66,55 @@ html(ng-app="PythonWorkshop",lang="en")
 
       +slide-title('Python basics', 'Introduction to the Python language')
 
+      +slide('Why Python?')
+        +slide-column(['col-md-8', 'col-md-offset-2'])
+          ul
+            li Universal programming language
+            li Readable source code
+            li Batteries included
+            li Highly extendable via modules
+            li Large community
+            li Free software
+            li Can integrate C/C++ or Fortran code (via Cython)
+
+      +slide('History of Python')
+        +slide-column(['col-md-8', 'col-md-offset-2'])
+          ul
+            li 1989: developed by Guido van Rossum as a hobby project on Christmas
+            li 1994: Python 1.0
+            li 2000: Python 2.0
+            li 2008: Python 3.0, backwards-incompatible release
+            li 2010: Python 2.7, last release of Python 2
+            li 2015: Python 3.5, matrix multiplication operator #[code @]
+            li ...
+          p In this workshop: #[strong Python 3.5]
+
+      +slide('Show me code!')
+        +slide-column
+          pre
+            code.hljs
+              :highlight(lang="python")
+                print("Hello world!")
+
+                a = 1337
+                print("a = {0}".format(a))
+
       +slide-title('Set up Python', 'Get your dev environment up and running')
+
+      +slide('Python setup')
+        +slide-column(['col-md-6'])
+          h3 Linux
+          pre.code-small
+            code.hljs
+              :highlight(lang="python")
+                sudo apt-get install python3 python3-pip \
+                  python3-numpy python3-scipy python3-matplotlib \
+                  python3-dev build-essential
+                virtualenv -p python3 --system-site-packages ~/.pyvirt3
+                pip3 install ipython jupyter
+        +slide-column(['col-md-6'])
+          h3 Mac OS X, Windows
+          p Install #[a(href="https://www.continuum.io/downloads") Anaconda]
 
       +slide-title('Scientific Python', 'NumPy, SciPy, matplotlib, jupyter and FEniCS')
 
