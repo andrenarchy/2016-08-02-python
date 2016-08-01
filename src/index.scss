@@ -1,0 +1,121 @@
+body {
+  font-family: Roboto, sans-serif;
+  font-size: 24px;
+  background-color: #1a1a1a;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.slide-background {
+  background-color: black;
+}
+
+code {
+  background-color: #1d1f21;
+  color: white;
+}
+
+.code-small code {
+  font-size: 11px;
+}
+
+blockquote {
+  font-size: 24px;
+}
+
+.slide {
+  color: white;
+  padding: 20px;
+}
+
+.slide-full-img {
+  background-color: none;
+  background-size: cover;
+}
+
+.slide-dark {
+  background-color: #0e0e0e;
+}
+
+.row-stretch {
+  display: flex;
+  > div > .box {
+    height: 100%;
+  }
+}
+
+.box {
+  background-color: rgba(70, 70, 70, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.ph-color {
+  color: #52608d;
+}
+
+.box-dark {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+
+.box-small {
+  margin-left: 29%;
+  margin-right: 29%
+}
+
+.no-margin-top {
+  margin-top: 0;
+}
+
+.xs-margin-top {
+  margin-top: 10px;
+}
+
+.sm-margin-top {
+  margin-top: 24px;
+}
+
+.md-margin-top {
+  margin-top: 90px;
+}
+
+.lg-margin-top {
+  margin-top: 200px;
+}
+
+.xl-margin-top {
+  margin-top: 390px;
+}
+
+h1 {
+  font-size: 56px;
+  font-weight: 800;
+}
+h2 {
+  font-size: 38px;
+  font-weight: 600;
+}
+h3 {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+pre {
+  padding: 0;
+  border: 0;
+  font-size: 17px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.animate-fade {
+  transition: opacity ease 0.5s;
+}
+.animate-fade.ng-enter, .animate-fade.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.animate-fade.ng-leave, .animate-fade.ng-enter.ng-enter-active {
+  opacity: 1;
+}

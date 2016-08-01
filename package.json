@@ -1,0 +1,42 @@
+{
+  "name": "2016-08-02-python",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "node-sass -o build src/index.scss",
+    "build:html": "pug -o build src/index.pug",
+    "build:js": "mkdir -p build && cp src/index.js build/index.js",
+    "build:static": "gulp images vendor",
+    "build": "npm-run-all -s build:*",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:css": "npm run build:css && node-sass -w -o build src/index.scss",
+    "watch:html": "pug -w -o build src/index.pug",
+    "watch:js": "nodemon -w src/index.js -x npm run build:js",
+    "watch:serve": "live-server build",
+    "watch:static": "nodemon -w src/img -e jpg,svg -x npm run build:static",
+    "watch": "npm-run-all -p watch:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrenarchy/2016-08-02-python.git"
+  },
+  "author": "André Gaul <andre@gaul.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrenarchy/2016-08-02-python/issues"
+  },
+  "homepage": "https://github.com/andrenarchy/2016-08-02-python#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-imagemin": "^3.0.2",
+    "jstransformer-highlight": "^1.0.1",
+    "live-server": "^1.0.0",
+    "nodemon": "^1.10.0",
+    "npm-run-all": "^2.3.0",
+    "pug-cli": "^1.0.0-alpha6"
+  },
+  "dependencies": {
+    "node-sass": "^3.8.0"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "2016-08-02-python",
+  "version": "0.0.0",
+  "authors": [
+    "André Gaul <andre@gaul.io>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular-slidedeck": "^0.2.5"
+  }
+}

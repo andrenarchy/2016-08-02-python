@@ -1,0 +1,56 @@
+doctype html
+
+mixin slide(title, subtitle)
+  slide.container-fluid
+    if title || subtitle
+      .row
+        .col-md-12
+          .box.text-center
+            if title
+              h1= title
+            if subtitle
+              h2= subtitle
+    .row.row-stretch.sm-margin-top
+      block
+
+mixin slide-column(classes=['col-md-12'])
+  div(class=classes)
+    .box
+      block
+
+html(ng-app="PythonWorkshop",lang="en")
+  head
+    title Python workshop
+    meta(charset="UTF-8")
+    link(rel="stylesheet",href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    link(rel="stylesheet",href="//opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css")
+    link(rel="stylesheet",href="//fonts.googleapis.com/css?family=Roboto:400,500,600,800")
+
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js")
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-animate.min.js")
+
+    script(src="vendor/angular-slidedeck/angular-slidedeck.min.js")
+    link(rel="stylesheet",href="vendor/angular-slidedeck/angular-slidedeck.min.css")
+
+    link(rel="stylesheet",href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/tomorrow-night.min.css")
+
+    // initialize angular (your own js and css)
+    script(src="index.js")
+    link(rel="stylesheet",href="index.css")
+
+  body(ng-cloak)
+    slides
+
+      +slide('Python workshop', 'Professional scientific software development')
+        +slide-column(['col-md-offset-3', 'col-md-6'])
+          .text-center
+            a(href="https://andre.gaul.io")
+              img(src="img/andre.jpg",style="max-width: 90px").img-circle
+            p André Gaul
+            p
+              a(href="https://twitter.com/andrenarchy") @andrenarchy
+            p
+              a(href="https://paperhive.org")
+                img(src="img/paperhive.svg",style="height: 1em")
+
+      +slide('Questions?')
