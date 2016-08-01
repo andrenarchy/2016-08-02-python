@@ -105,7 +105,7 @@ html(ng-app="PythonWorkshop",lang="en")
                 virtualenv -p python3 --system-site-packages ~/.pyvirt3
 
                 # install important packages
-                pip3 install ipython jupyter pep8
+                pip3 install ipython jupyter pep8 matplotlib2tikz
         +slide-column(['col-md-6'])
           h3 Mac OS X, Windows
           p Install #[a(href="https://www.continuum.io/downloads") Anaconda]
@@ -153,6 +153,7 @@ html(ng-app="PythonWorkshop",lang="en")
               :highlight(lang="python")
                 # a list
                 b = [1, 2, 3, "this is a string"]
+                print(b[0]) # 2 (zero-based indices)
 
                 # indentation defines code blocks
                 for el in b:
@@ -310,6 +311,101 @@ html(ng-app="PythonWorkshop",lang="en")
               img(src="img/xkcd-python-2.png",style="height: 250px")
 
       +slide-title('Scientific Python', 'NumPy, SciPy, matplotlib, jupyter and FEniCS')
+
+      +slide('NumPy', 'Basics for numerical computations')
+        +slide-column
+          p Core data type: #[code array] (vector, matrix, n-dim tensor)
+          pre
+            code.hljs
+              :highlight(lang="python")
+                from numpy import array
+
+                v1 = array([1, 2])   # vector, 1-dim, shape (2,)
+                v2 = array([[1],
+                            [2]])    # vector, 2-dim, shape (2, 1)
+                A = array([[1, 2],
+                           [3, 4]])  # matrix, 2-dim, shape (2, 2)
+                x = A @ v1
+
+      +slide('NumPy', 'Basics for numerical computations')
+        +slide-column(['col-md-6'])
+          p Create arrays
+          pre
+            code.hljs
+              :highlight(lang="python")
+                from numpy import diag, eye, ones, zeros
+                from numpy.random import rand
+
+                D = diag([1, 2 ,3])
+                I = eye(10)
+                v = ones(10)
+                A = zeros((10, 5))
+                z = rand(10, 10)
+        +slide-column(['col-md-6'])
+          p Indexing and slicing
+          pre
+            code.hljs
+              :highlight(lang="python")
+                from numpy.random import rand
+                v = rand(10, 5)
+
+                v[0, :]   # first row
+                v[:2, :]  # first 2 rows
+                v[-2:, :] # last 2 rows
+
+      +slide('NumPy', 'Common numpy submodules')
+        +slide-column
+          ul
+            li #[code numpy.linalg: norm, solve, eig, svd, qr, ...]
+            li #[code numpy.random: rand, poisson, normal, ...]
+            li #[code numpy.polynomial: chebyshev, legendre, ...]
+            li #[code numpy.fft:] discrete fourier transform
+            li full list: #[a(href="http://docs.scipy.org/doc/") NumPy docs]
+
+      +slide('SciPy', 'Scientific computing module')
+        +slide-column
+          p Advanced numerical algorithms and data structures
+          ul
+            li #[code scipy.linalg: lu, hessenberg, schur, ...]
+            li #[code scipy.sparse: csr, csc, coo, ...]
+            li #[code scipy.sparse.linalg: norm, cg, gmres, eigs, svds, splu, ...]
+            li #[code scipy.optimize: newton, broyden, lp, ...]
+            li #[code scipy.integrate: quad, odeint, ...]
+            li full list: #[a(href="http://docs.scipy.org/doc/scipy/reference/") SciPy docs]
+
+      +slide('matplotlib', '2D high quality plotting')
+        +slide-column
+          p See #[a(href="http://matplotlib.org/gallery.html") matplotlib gallery]
+          p Demo from #[a(href="http://krypy.readthedocs.io/en/latest/") krypy docs]
+
+      +slide('matplotlib2tikz', 'Beautiful plots for LaTeX')
+        +slide-column
+          pre
+            code.hljs
+              :highlight(lang="python")
+                # plot with matplotlib
+                # ...
+
+                # save as tex
+                from matplotlib2tikz import save as tikz_save
+                tikz_save('test.tex')
+
+      +slide('matplotlib2tikz', 'Beautiful plots for LaTeX')
+        +slide-column(['col-md-6'])
+          .text-center
+            a(href="https://dx.doi.org/10.14279/depositonce-4147")
+              img(src="img/matplotlib-ritz.png",style="height: 250px")
+        +slide-column(['col-md-6'])
+          .text-center
+            a(href="https://dx.doi.org/10.14279/depositonce-4147")
+              img(src="img/matplotlib-minres.png",style="height: 250px")
+
+      +slide('jupyter notebook', 'Living code, visualizations and text')
+        +slide-column
+          ul
+            li Python in your browser!
+            li Ideal for numerical experiments
+            li Just run #[code jupyter notebook]
 
       +slide-title('Continuous integration', 'Unit tests, linting and code coverage')
 
