@@ -415,10 +415,52 @@ html(ng-app="PythonWorkshop",lang="en")
 
       +slide-title('Continuous integration', 'Unit tests, linting and code coverage')
 
-      +slide-title('Documentation', 'Read the docs')
+      +slide('Continuous integration')
+        +slide-column
+          ul
+            li Goal: rapid development
+            li Automated tests check every commit
+            li Notice failing code immediately
+
+      +slide('Unit tests')
+        +slide-column
+          ul
+            li Small test for one function
+            li TDD (test driven development): first write tests, then write actual code
+            li Python: #[code pip3 install nose2]
+            li Hack session!
+
+      +slide-title('Documentation')
+
+      +slide('Documentation', 'Support integrated in Python')
+        +slide-column
+          pre
+            code.hljs
+              :highlight(lang="python")
+                def subspace_angles(X, Y):
+                    '''Compute angles between subspaces
+
+                    :param X: basis array with shape (N,m)
+                    :param Y: basis array with shape (N,m)
+
+                    :return: array with principal angles
+                    '''
+                    # ...
+
+      +slide('Documentation', 'readthedocs.org')
+        +slide-column(['col-md-6'])
+          ul
+            li Beautiful docs
+            li Automatically generates docs for each commit
+            li Hosts your docs for free
+            li Example: #[a(href="http://krypy.readthedocs.io/en/latest/") KryPy docs]
+        +slide-column(['col-md-6'])
+          .text-center
+            a(href="http://krypy.readthedocs.io/en/latest/")
+              img(src="img/krypy-docs.png",style="height: 250px")
 
       +slide('Further resources')
-        +slide-column
+        +slide-column(['col-md-6', 'col-md-offset-3'])
           ul
             li #[a(href="http://learnpythonthehardway.org/") Learn Python the hard way]
             li #[a(href="http://www.scipy-lectures.org/") SciPy lectures]
